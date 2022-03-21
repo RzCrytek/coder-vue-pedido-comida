@@ -11,42 +11,46 @@
           width="40"
         />
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
+        <h1>PedidoDeComidas</h1>
       </div>
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <nav>
+        <v-btn text href="#!">Menús</v-btn>
+        <v-btn text href="#!">
+          Carrito
+          <v-icon>mdi-cart-outline</v-icon>
+        </v-btn>
+      </nav>
     </v-app-bar>
 
     <v-main>
-      <HelloWorld />
+      <LoginPage />
+      <RegisterPage />
+      <MenuListPage />
+      <MenuDetailPage />
+      <CarritoPage />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import LoginPage from './pages/LoginPage.vue';
+import RegisterPage from './pages/RegisterPage.vue';
+import MenuListPage from './pages/MenuListPage.vue';
+import MenuDetailPage from './pages/MenuDetailPage.vue';
+import CarritoPage from './pages/CarritoPage.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    LoginPage,
+    RegisterPage,
+    MenuListPage,
+    MenuDetailPage,
+    CarritoPage,
   },
 
   data: () => ({
