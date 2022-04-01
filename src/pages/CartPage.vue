@@ -1,14 +1,14 @@
 <template>
   <v-main>
     <v-container>
-      <h1>Carrito de compras</h1>
+      <h1>Cart de compras</h1>
     </v-container>
   </v-main>
 </template>
 
 <script>
 export default {
-  name: 'CarritoPage',
+  name: 'CartPage',
   data() {
     return {};
   },
