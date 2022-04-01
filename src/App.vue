@@ -1,7 +1,9 @@
 <template>
-  <v-app>
-    <router-view />
-  </v-app>
+  <!-- <v-app> -->
+  <component :is="layout">
+    <router-view :layout.sync="layout" />
+  </component>
+  <!-- </v-app> -->
 </template>
 
 <script>
@@ -11,7 +13,7 @@ export default {
   components: {},
 
   data: () => ({
-    //
+    layout: `div`,
   }),
 };
 </script>
