@@ -7,12 +7,7 @@
 </template>
 
 <script>
-import Layout from './layouts/Layout.vue';
-
 export default {
   name: 'CartPage',
-  created() {
-    this.$emit(`update:layout`, Layout);
-  },
 };
 </script>
