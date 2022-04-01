@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import Layout from '@/pages/layouts/Layout.vue';
+
 import LoginPage from '@/pages/auth/LoginPage.vue';
 import RegisterPage from '@/pages/auth/RegisterPage.vue';
 import HomePage from '@/pages/HomePage.vue';
@@ -22,16 +24,25 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomePage,
+    meta: {
+      layout: Layout,
+    },
   },
   {
     path: '/menu/detail',
     name: 'detail',
     component: () => import('../pages/MenuDetailPage.vue'),
+    meta: {
+      layout: Layout,
+    },
   },
   {
     path: '/cart',
     name: 'cart',
     component: () => import('../pages/CartPage.vue'),
+    meta: {
+      layout: Layout,
+    },
   },
 ];
 

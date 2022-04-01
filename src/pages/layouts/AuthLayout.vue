@@ -1,9 +1,14 @@
 <template>
-  <h1>Auth Layout</h1>
+  <v-app>
+    <!-- <h1>Auth Layout</h1> -->
+    <slot />
+  </v-app>
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'AuthLayout',
+};
 </script>
 
 <style></style>

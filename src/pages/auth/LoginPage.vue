@@ -1,59 +1,53 @@
 <template>
-  <v-app>
-    <v-main>
-      <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md4>
-            <v-card class="elevation-12">
-              <v-toolbar dark color="primary">
-                <v-toolbar-title>Iniciar Sesión</v-toolbar-title>
-              </v-toolbar>
+  <v-main>
+    <v-container fluid fill-height>
+      <v-layout align-center justify-center>
+        <v-flex xs12 sm8 md4>
+          <v-card class="elevation-12">
+            <v-toolbar dark color="primary">
+              <v-toolbar-title>Iniciar Sesión</v-toolbar-title>
+            </v-toolbar>
 
-              <v-card-text>
-                <form ref="form" @submit.prevent="login()">
-                  <v-text-field
-                    v-model="username"
-                    name="username"
-                    label="Username"
-                    type="text"
-                    placeholder="username"
-                    prepend-icon="mdi-account"
-                    required
-                  ></v-text-field>
+            <v-card-text>
+              <form ref="form" @submit.prevent="login()">
+                <v-text-field
+                  v-model="username"
+                  name="username"
+                  label="Username"
+                  type="text"
+                  placeholder="username"
+                  prepend-icon="mdi-account"
+                  required
+                ></v-text-field>
 
-                  <v-text-field
-                    v-model="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    placeholder="password"
-                    prepend-icon="mdi-lock"
-                    required
-                  ></v-text-field>
+                <v-text-field
+                  v-model="password"
+                  name="password"
+                  label="Password"
+                  type="password"
+                  placeholder="password"
+                  prepend-icon="mdi-lock"
+                  required
+                ></v-text-field>
 
-                  <v-btn
-                    type="submit"
-                    class="mt-4"
-                    color="primary"
-                    value="log in"
-                    >Iniciar Sesión</v-btn
+                <v-btn type="submit" class="mt-4" color="primary" value="log in"
+                  >Iniciar Sesión</v-btn
+                >
+
+                <div class="mt-4">
+                  <router-link
+                    class="grey--text text-decoration-none mt-4"
+                    to="register"
+                    >Regístrate</router-link
                   >
-
-                  <div class="mt-4">
-                    <router-link
-                      class="grey--text text-decoration-none mt-4"
-                      to="register"
-                      >Regístrate</router-link
-                    >
-                  </div>
-                </form>
-              </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-main>
-  </v-app>
+                </div>
+              </form>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-main>
 </template>
 
 <script>

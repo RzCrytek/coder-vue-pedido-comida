@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Header></Header>
-    <h1>Default Layout</h1>
+    <!-- <h1>Default Layout</h1> -->
     <slot />
   </v-app>
 </template>
