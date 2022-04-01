@@ -1,17 +1,20 @@
 <template>
   <v-main>
-    <v-container>
-      <h1>Detalle</h1>
-    </v-container>
+    <Layout>
+      <v-container>
+        <h1>Detalle</h1>
+      </v-container>
+    </Layout>
   </v-main>
 </template>
 
 <script>
+import Layout from './layouts/Layout.vue';
+
 export default {
   name: 'MenuDetailPage',
-  data() {
-    return {};
+  components: {
+    Layout,
   },
-  methods: {},
 };
 </script>
