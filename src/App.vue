@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
+      <router-link
+        class="d-flex align-center white--text text-decoration-none"
+        to="/"
+      >
         <v-img
           alt="Vuetify Logo"
           class="shrink mr-2"
@@ -12,46 +15,39 @@
         />
 
         <h1>PedidoDeComidas</h1>
-      </div>
+      </router-link>
 
       <v-spacer></v-spacer>
 
       <nav>
-        <v-btn text href="#!">Menús</v-btn>
-        <v-btn text href="#!">
+        <v-btn text to="/">Menús</v-btn>
+
+        <v-btn text to="/cart">
           Carrito
           <v-icon>mdi-cart-outline</v-icon>
         </v-btn>
+
+        <v-btn text to="/auth/login">
+          Login
+          <v-icon>mdi-account-box</v-icon>
+        </v-btn>
       </nav>
+      <!-- <nav>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </nav> -->
     </v-app-bar>
 
-    <v-main>
-      <LoginPage />
-      <RegisterPage />
-      <MenuListPage />
-      <MenuDetailPage />
-      <CarritoPage />
-    </v-main>
+    <!-- <v-main> </v-main> -->
+    <router-view />
   </v-app>
 </template>
 
 <script>
-import LoginPage from './pages/LoginPage.vue';
-import RegisterPage from './pages/RegisterPage.vue';
-import MenuListPage from './pages/MenuListPage.vue';
-import MenuDetailPage from './pages/MenuDetailPage.vue';
-import CarritoPage from './pages/CarritoPage.vue';
-
 export default {
   name: 'App',
 
-  components: {
-    LoginPage,
-    RegisterPage,
-    MenuListPage,
-    MenuDetailPage,
-    CarritoPage,
-  },
+  components: {},
 
   data: () => ({
     //
@@ -60,3 +56,17 @@ export default {
 </script>
 
 <style lang="scss" src="./styles/app.scss"></style>
+<style lang="scss">
+/* nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+} */
+</style>

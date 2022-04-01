@@ -1,5 +1,9 @@
 <template>
-  <h1>Detalle</h1>
+  <v-main>
+    <v-container>
+      <h1>Detalle</h1>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
