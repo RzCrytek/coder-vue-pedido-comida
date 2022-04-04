@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main id="cart">
     <v-container>
       <h1>Cart de compras</h1>
     </v-container>

@@ -19,11 +19,14 @@
     <v-spacer></v-spacer>
 
     <nav>
-      <v-btn text to="/">Menús</v-btn>
+      <v-btn text to="/">
+        Menús
+        <v-icon right>mdi-food</v-icon>
+      </v-btn>
 
       <v-btn text to="/cart">
         Carrito
-        <v-icon>mdi-cart-outline</v-icon>
+        <v-icon right>mdi-cart-outline</v-icon>
       </v-btn>
 
       <v-btn text to="/auth/login">

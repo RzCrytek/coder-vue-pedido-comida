@@ -23,7 +23,10 @@ export default {
 </script>
 
 <style lang="scss" src="./styles/app.scss"></style>
-<style lang="scss">
+<style lang="scss" scoped>
+.theme--light.v-application {
+  background-color: #f7f7f7;
+}
 /* nav {
   padding: 30px;
 
