@@ -30,7 +30,7 @@
       </v-btn>
 
       <v-btn text to="/auth/login">
-        Login
+        Admin
         <v-icon>mdi-account-box</v-icon>
       </v-btn>
     </nav>

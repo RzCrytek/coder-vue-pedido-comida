@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "available": true,
+      "createdAt": "",
+      "email": "user@user.com",
+      "id": 0,
+      "lastname": "User",
+      "mockId": "1",
+      "name": "User",
+      "roles": ["user"],
+      "password": "demo1234",
+      "username": "user1"
+    },
+    {
+      "available": true,
+      "createdAt": "",
+      "email": "admin@admin.com",
+      "id": 1,
+      "lastname": "Admin",
+      "mockId": "2",
+      "name": "Admin",
+      "roles": ["admin"],
+      "password": "admin1234",
+      "username": "admin1"
+    },
+    {
+      "available": true,
+      "createdAt": "",
+      "email": "ivan@ivan.com",
+      "id": 2,
+      "lastname": "Falcon",
+      "mockId": "3",
+      "name": "Ivan",
+      "roles": ["user", "admin"],
+      "password": "demo1234",
+      "username": "Crytek"
+    }
+  ]
+}
