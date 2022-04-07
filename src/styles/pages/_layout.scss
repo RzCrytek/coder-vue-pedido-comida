@@ -10,3 +10,16 @@
     text-align: center;
   }
 }
+
+.v-text-field {
+  &.x-small {
+    .v-input__control {
+      width: 50px;
+      min-height: 30px !important;
+    }
+
+    .v-input__slot {
+      min-height: 30px !important;
+    }
+  }
+}
