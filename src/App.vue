@@ -7,7 +7,7 @@
 </template>
 
 <script>
-const defaultLayout = 'AuthLayout';
+const defaultLayout = '';
 
 export default {
   name: 'App',
@@ -16,6 +16,8 @@ export default {
     layout() {
       const layout = this.$route.meta.layout || defaultLayout;
       console.log('layout', layout);
+      console.log('layout', layout ? 'si' : 'no');
+      if (!layout) return 'div';
       return () => import(`@/pages/layouts/${layout}.vue`);
     },
   },

@@ -48,6 +48,12 @@ const routes = [
       layout: 'Layout',
     },
   },
+
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('../pages/dashboard/Dashboard.vue'),
+  },
 ];
 
 const router = new VueRouter({
