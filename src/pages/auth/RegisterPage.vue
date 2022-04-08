@@ -34,7 +34,7 @@
           v-model="email"
           name="email"
           label="Correo"
-          type="text"
+          type="email"
           placeholder="Correo"
           required
         ></v-text-field>
