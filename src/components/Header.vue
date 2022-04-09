@@ -29,10 +29,27 @@
         <v-icon right>mdi-cart-outline</v-icon>
       </v-btn>
 
-      <v-btn text to="/auth/login">
+      <v-btn text to="/auth/login" v-if="!isLogin">
         Admin
         <v-icon>mdi-account-box</v-icon>
       </v-btn>
+
+      <v-menu offset-y v-else>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" dark v-bind="attrs" v-on="on">
+            {{ userName }}
+            <v-icon right>mdi-chevron-down</v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item to="/dashboard">
+            <v-list-item-title>Dashboard</v-list-item-title>
+          </v-list-item>
+          <v-list-item @click="logout">
+            <v-list-item-title>Cerrar sesión</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </nav>
     <!-- <nav>
         <router-link to="/">Home</router-link> |
@@ -42,7 +59,20 @@
 </template>
 
 <script>
-export default {};
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'Header',
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      // this.$router.push({ name: 'home' });
+    },
+  },
+  computed: {
+    ...mapGetters(['isLogin', 'userName']),
+  },
+};
 </script>
 
 <style></style>

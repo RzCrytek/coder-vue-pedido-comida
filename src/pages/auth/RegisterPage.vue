@@ -85,6 +85,9 @@ export default {
   name: 'RegisterPage',
   data() {
     return {
+      name: '',
+      lastname: '',
+      email: '',
       username: '',
       password: '',
       confirmPassword: '',

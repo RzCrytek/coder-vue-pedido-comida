@@ -7,6 +7,7 @@
       dark
       :small="!smallCount"
       :x-small="smallCount"
+      @click="decrement"
     >
       <v-icon dark>mdi-minus</v-icon>
     </v-btn>
@@ -14,7 +15,7 @@
     <v-text-field
       class="centered-input text-center"
       :class="smallCount ? 'x-small' : null"
-      value="1"
+      :value="quantity"
       denso
       solo
       outlined
@@ -31,6 +32,7 @@
       dark
       :small="!smallCount"
       :x-small="smallCount"
+      @click="increment"
     >
       <v-icon dark>mdi-plus</v-icon>
     </v-btn>
@@ -42,6 +44,23 @@ export default {
   name: 'Counter',
   props: {
     smallCount: Boolean,
+  },
+  data() {
+    return {
+      quantity: 1,
+    };
+  },
+  methods: {
+    decrement() {
+      if (this.quantity > 1) {
+        this.quantity -= 1;
+      }
+    },
+    increment() {
+      if (this.quantity < 10) {
+        this.quantity += 1;
+      }
+    },
   },
   computed: {},
 };

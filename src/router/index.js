@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+import store from '../store';
+
 import LoginPage from '@/pages/auth/LoginPage.vue';
 import RegisterPage from '@/pages/auth/RegisterPage.vue';
 import HomePage from '@/pages/HomePage.vue';
@@ -53,11 +55,29 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: () => import('../pages/dashboard/Dashboard.vue'),
+    meta: {
+      requiresAuthAdmin: true,
+    },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: { name: 'home' },
   },
 ];
-
 const router = new VueRouter({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const isLogged = store.getters.isLogin;
+  const isAdmin = store.getters.isAdmin;
+
+  if (to.matched.some((record) => record.meta.requiresAuthAdmin)) {
+    if (to.meta.requiresAuthAdmin && isLogged && isAdmin) next();
+    else next({ name: 'login' });
+  } else {
+    next();
+  }
 });
 
 export default router;

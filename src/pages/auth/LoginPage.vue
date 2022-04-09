@@ -19,14 +19,23 @@
         <v-text-field
           v-model="password"
           name="password"
-          label="Password"
+          label="Contraseña"
           type="password"
-          placeholder="password"
+          placeholder="Contraseña"
           prepend-icon="mdi-lock"
           required
         ></v-text-field>
 
-        <v-btn type="submit" class="mt-4" color="primary" value="log in"
+        <v-alert v-if="error" dense prominent text type="error">
+          {{ errorMessage }}
+        </v-alert>
+
+        <v-btn
+          type="submit"
+          class="mt-4"
+          color="primary"
+          value="log in"
+          :disabled="!isValid"
           >Iniciar Sesión</v-btn
         >
 
@@ -43,18 +52,53 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'LoginPage',
   data() {
     return {
       username: '',
       password: '',
+      error: false,
+      errorMessage: '',
     };
   },
   methods: {
-    login() {
-      const { username } = this;
-      console.log(username + 'logged in');
+    async login() {
+      const userAPI = 'https://62451d360e8dd89b5438a71d.mockapi.io/users';
+      const { username, password } = this;
+
+      try {
+        const response = await axios(userAPI);
+        const data = await response.data;
+
+        const userExists = data.find(
+          (user) => user.username == username && user.password == password
+        );
+
+        if (!userExists) {
+          this.errorMessage = 'No se encontró el usuario';
+          return (this.error = true);
+        }
+
+        this.error = false;
+        this.errorMessage = '';
+
+        const isAdmin = 'admin'.includes(userExists.roles);
+        // const userData = { ...userExists, isAdmin: isAdmin };
+        const redirect = isAdmin ? 'dashboard' : 'home';
+
+        this.$store.dispatch('loggedUser', userExists);
+        this.$router.push({ name: redirect });
+      } catch (error) {
+        console.log('error', error);
+      }
+    },
+  },
+  computed: {
+    isValid() {
+      return this.username && this.password;
     },
   },
 };
