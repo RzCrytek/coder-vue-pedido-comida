@@ -1,5 +1,10 @@
 <template>
-  <v-card class="mx-auto my-6" max-width="374" to="/menu/detail">
+  <!-- :to="`/menu/detail/${menu.mockId}`" -->
+  <v-card
+    class="mx-auto my-6"
+    max-width="374"
+    :to="{ name: 'detail', params: { id: menu.mockId } }"
+  >
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"

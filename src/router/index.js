@@ -35,7 +35,7 @@ const routes = [
     },
   },
   {
-    path: '/menu/detail',
+    path: '/menu/detail/:id',
     name: 'detail',
     component: () => import('../pages/MenuDetailPage.vue'),
     meta: {

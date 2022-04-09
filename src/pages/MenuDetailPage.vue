@@ -16,40 +16,31 @@
               lazy-src="https://picsum.photos/id/11/10/6"
               max-width=""
               height="100%"
-              src="https://www.lima2019.pe/sites/default/files/inline-images/preview-gallery-006_0.jpg"
+              :src="menu.image"
             ></v-img>
           </v-col>
           <v-col class="data-content" md="6">
-            <h1 class="mb-1">CEVICHE</h1>
+            <h1 class="mb-1">{{ menu.name }}</h1>
             <div class="d-flex">
               <v-rating
-                :value="4.5"
+                :value="menu.rating"
                 color="amber"
                 dense
                 half-increments
                 readonly
                 size="14"
               ></v-rating>
-              <span>(500)</span>
+              <span>({{ menu.totalRating }})</span>
               <span class="mx-2">|</span>
-              <span><strong>Stock:</strong> 10</span>
+              <span><strong>Stock:</strong> {{ menu.stock }}</span>
             </div>
             <p class="my-6 description">
-              Ahora pasamos a un plato querido por todos los peruanos y que sin
-              duda recomendamos a todo aquel que visita nuestro país por primera
-              vez. Como su nombre lo indica, el lomo es saltado en sartén hasta
-              adquirir la cocción adecuada junto un poco de vinagre y algunas
-              especias para luego pasar a ser acompañado por papas fritas y
-              arroz. El Lomo Saltado es un plato cuyo origen se remonta a la
-              llegada de los chinos-cantoneses a Perú a partir del siglo XIX,
-              quienes terminaron de perfeccionar este plato tan exquisito que
-              paladares de todo el mundo buscan probar apenas pisan suelo
-              peruano.
+              {{ menu.description }}
             </p>
 
             <div class="mb-6">
               <span><strong>Precio:</strong></span>
-              <p class="text-h4">S/ 60.00</p>
+              <p class="text-h4">S/ {{ menu.price.toFixed(2) }}</p>
             </div>
 
             <Counter />
@@ -65,12 +56,32 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Counter from '@/components/Counter.vue';
 
 export default {
   name: 'MenuDetailPage',
   components: {
     Counter,
+  },
+  data() {
+    return {
+      menu: [],
+    };
+  },
+  async mounted() {
+    const ListMenuDetailApi = `https://62451d360e8dd89b5438a71d.mockapi.io/menus/${this.$route.params.id}`;
+
+    try {
+      await axios(ListMenuDetailApi).then(({ data }) => (this.menu = data));
+    } catch (error) {
+      console.log('error:', error);
+    }
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
   },
 };
 </script>
