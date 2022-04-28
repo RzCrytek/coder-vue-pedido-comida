@@ -24,7 +24,13 @@
         <v-icon right>mdi-food</v-icon>
       </v-btn>
 
-      <v-btn text to="/cart" v-if="getQuantityMenus > 0">
+      <v-btn
+        class="btn-cart"
+        :class="{ added: classAnimation }"
+        text
+        to="/cart"
+        v-if="getQuantityMenus > 0"
+      >
         Carrito
         <v-icon right>mdi-cart-outline</v-icon>
         <sup class="ml-1" v-html="moreThanNine" />
@@ -60,7 +66,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'Header',
@@ -71,13 +77,46 @@ export default {
     },
   },
   computed: {
+    ...mapState(['menusCart']),
     ...mapGetters(['isLogin', 'userName', 'getQuantityMenus']),
     moreThanNine() {
       const getQuantityMenus = this.getQuantityMenus;
       return getQuantityMenus > 9 ? `(9<sup>+</sup>)` : `(${getQuantityMenus})`;
     },
+    classAnimation() {
+      return this.menusCart.cartButtonAnimation;
+    },
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.btn-cart {
+  &.added {
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-name: shakeX;
+  }
+}
+
+@keyframes shakeX {
+  0%,
+  to {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  10%,
+  50%,
+  90% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  30%,
+  70% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+}
+</style>

@@ -1,6 +1,7 @@
 export default {
   state: {
     cart: [],
+    cartButtonAnimation: false,
   },
   getters: {
     getQuantityMenus: (state) => {

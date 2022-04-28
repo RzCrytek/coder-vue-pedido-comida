@@ -94,6 +94,13 @@ export default {
       const newMenu = { ...menu, quantity };
       console.log('newMenu:', newMenu);
       this.$store.dispatch('addMenu', newMenu);
+
+      // menusCart.cartButtonAnimation = true;
+      this.$store.state.menusCart.cartButtonAnimation = true;
+
+      setTimeout(() => {
+        this.$store.state.menusCart.cartButtonAnimation = false;
+      }, 500);
     },
     scrollToTop() {
       window.scrollTo(0, 0);
