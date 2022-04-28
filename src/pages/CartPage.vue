@@ -1,16 +1,21 @@
 <template>
   <v-main id="cart">
+    <!-- <pre>{{ JSON.stringify(menusCart.cart, null, 2) }}</pre> -->
     <v-container>
       <v-row>
         <v-col cols="12" md="7">
           <div class="content">
             <h3 class="mb-6">
-              CARRITO DE COMPRAS <span class="grey--text">- 1 Producto</span>
+              CARRITO DE COMPRAS
+              <span class="grey--text">- {{ getQuantity }}</span>
             </h3>
 
             <div class="content-menus">
-              <MenuCardCart />
-              <MenuCardCart />
+              <MenuCardCart
+                v-for="menu in menusCart.cart"
+                :key="menu.id"
+                :menu="menu"
+              />
             </div>
           </div>
         </v-col>
@@ -47,12 +52,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import MenuCardCart from '@/components/MenuCardCart.vue';
 
 export default {
   name: 'CartPage',
   components: {
     MenuCardCart,
+  },
+  computed: {
+    ...mapState(['menusCart']),
+    getQuantity() {
+      const quantity = this.$store.getters.getQuantityMenus;
+      const messageQuantity = quantity > 1 ? 'Productos' : 'Producto';
+      return `${quantity} ${messageQuantity}`;
+    },
   },
 };
 </script>

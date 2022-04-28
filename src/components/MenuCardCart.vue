@@ -3,7 +3,7 @@
     <div class="d-flex py-4 px-4">
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
-        src="https://www.lima2019.pe/sites/default/files/inline-images/preview-gallery-006_0.jpg"
+        :src="menu.image"
         width="100px"
         height="100px"
       />
@@ -11,9 +11,9 @@
       <div class="card-info ml-4">
         <div class="d-flex justify-space-between align-center card-info-data">
           <div class="info-name">
-            <h3>Ceviche</h3>
+            <h3>{{ menu.name }}</h3>
             <v-rating
-              :value="4.5"
+              :value="menu.rating"
               color="amber"
               dense
               half-increments
@@ -23,12 +23,12 @@
           </div>
 
           <div class="info-price">
-            <h3 class="teal--text">S/ 100.00</h3>
+            <h3 class="teal--text">S/ {{ menu.price.toFixed(2) }}</h3>
           </div>
         </div>
 
         <v-card-actions class="justify-space-between px-0">
-          <Counter smallCount />
+          <Counter :stock="menu.stock" smallCount automaticUpdate />
           <v-btn text color="error">Eliminar</v-btn>
         </v-card-actions>
       </div>
@@ -41,6 +41,9 @@ import Counter from '@/components/Counter.vue';
 
 export default {
   name: 'MenuCardCart',
+  props: {
+    menu: Object,
+  },
   components: {
     Counter,
   },
