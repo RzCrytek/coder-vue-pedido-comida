@@ -44,6 +44,8 @@ export default {
   name: 'Counter',
   props: {
     smallCount: Boolean,
+    stock: Number,
+    automaticUpdate: Boolean,
   },
   data() {
     return {
@@ -57,9 +59,15 @@ export default {
       }
     },
     increment() {
-      if (this.quantity < 10) {
+      if (this.quantity < this.stock) {
         this.quantity += 1;
       }
+    },
+  },
+  watch: {
+    quantity() {
+      console.log('watch:', this.quantity);
+      this.$emit('quantity', this.quantity);
     },
   },
   computed: {},

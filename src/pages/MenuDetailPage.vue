@@ -40,12 +40,18 @@
 
             <div class="mb-6">
               <span><strong>Precio:</strong></span>
-              <p class="text-h4">S/ {{ menu.price.toFixed(2) }}</p>
+              <p class="text-h4">S/ {{ menu.price | toFixed }}</p>
             </div>
 
-            <Counter />
+            <!-- <Counter :stock="menu.stock" @quantity="getQuantity($event)" /> -->
+            <Counter :stock="menu.stock" @quantity="getQuantity" />
 
-            <v-btn class="font-weight-black mt-10" color="" dark large
+            <v-btn
+              class="font-weight-black mt-10"
+              color=""
+              dark
+              large
+              @click="addMenuToCart(menu, quantity)"
               >AGREGAR AL CARRITO</v-btn
             >
           </v-col>
@@ -67,6 +73,7 @@ export default {
   data() {
     return {
       menu: [],
+      quantity: 1,
     };
   },
   async mounted() {
@@ -79,8 +86,22 @@ export default {
     }
   },
   methods: {
+    getQuantity(value) {
+      this.quantity = value;
+    },
+    addMenuToCart(menu, quantity) {
+      console.log(menu, quantity);
+      const newMenu = { ...menu, quantity };
+      console.log('newMenu:', newMenu);
+      this.$store.dispatch('addMenu', newMenu);
+    },
     scrollToTop() {
       window.scrollTo(0, 0);
+    },
+  },
+  filters: {
+    toFixed(val) {
+      return val?.toFixed(2);
     },
   },
 };
