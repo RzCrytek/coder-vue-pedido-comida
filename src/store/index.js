@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import menusCartModule from './menusCartModule';
 
 Vue.use(Vuex);
 
@@ -37,5 +38,7 @@ export default new Vuex.Store({
       commit('logout');
     },
   },
-  modules: {},
+  modules: {
+    menusCart: menusCartModule,
+  },
 });
