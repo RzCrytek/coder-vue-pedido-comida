@@ -24,9 +24,10 @@
         <v-icon right>mdi-food</v-icon>
       </v-btn>
 
-      <v-btn text to="/cart">
+      <v-btn text to="/cart" v-if="getQuantityMenus > 0">
         Carrito
         <v-icon right>mdi-cart-outline</v-icon>
+        <sup class="ml-1" v-html="moreThanNine" />
       </v-btn>
 
       <v-btn text to="/auth/login" v-if="!isLogin">
@@ -70,7 +71,11 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['isLogin', 'userName']),
+    ...mapGetters(['isLogin', 'userName', 'getQuantityMenus']),
+    moreThanNine() {
+      const getQuantityMenus = this.getQuantityMenus;
+      return getQuantityMenus > 9 ? `(9<sup>+</sup>)` : `(${getQuantityMenus})`;
+    },
   },
 };
 </script>
