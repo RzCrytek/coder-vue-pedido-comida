@@ -28,8 +28,16 @@
         </div>
 
         <v-card-actions class="justify-space-between px-0">
-          <Counter :stock="menu.stock" smallCount automaticUpdate />
-          <v-btn text color="error">Eliminar</v-btn>
+          <Counter
+            :stock="menu.stock"
+            :menuId="menu.id"
+            :quantityMenuAdded="menu.quantity"
+            smallCount
+            automaticUpdate
+          />
+          <v-btn text color="error" @click="removeMenu(menu.id)"
+            >Eliminar</v-btn
+          >
         </v-card-actions>
       </div>
     </div>
@@ -37,6 +45,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import Counter from '@/components/Counter.vue';
 
 export default {
@@ -46,6 +55,9 @@ export default {
   },
   components: {
     Counter,
+  },
+  methods: {
+    ...mapActions(['removeMenu']),
   },
 };
 </script>

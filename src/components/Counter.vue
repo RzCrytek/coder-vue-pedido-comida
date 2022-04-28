@@ -7,7 +7,11 @@
       dark
       :small="!smallCount"
       :x-small="smallCount"
-      @click="decrement"
+      @click="
+        automaticUpdate
+          ? decreaseMenu({ menuId, quantityMenuAdded })
+          : decrement()
+      "
     >
       <v-icon dark>mdi-minus</v-icon>
     </v-btn>
@@ -15,7 +19,7 @@
     <v-text-field
       class="centered-input text-center"
       :class="smallCount ? 'x-small' : null"
-      :value="quantity"
+      :value="automaticUpdate ? quantityMenuAdded : quantity"
       denso
       solo
       outlined
@@ -32,7 +36,11 @@
       dark
       :small="!smallCount"
       :x-small="smallCount"
-      @click="increment"
+      @click="
+        automaticUpdate
+          ? increaseMenu({ menuId, quantityMenuAdded, stock })
+          : increment()
+      "
     >
       <v-icon dark>mdi-plus</v-icon>
     </v-btn>
@@ -40,19 +48,27 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
   name: 'Counter',
   props: {
     smallCount: Boolean,
     stock: Number,
     automaticUpdate: Boolean,
+    menuId: Number,
+    quantityMenuAdded: Number,
   },
   data() {
     return {
       quantity: 1,
     };
   },
+  computed: {
+    ...mapState(['menusCart']),
+  },
   methods: {
+    ...mapActions(['decreaseMenu', 'increaseMenu']),
     decrement() {
       if (this.quantity > 1) {
         this.quantity -= 1;
@@ -70,7 +86,6 @@ export default {
       this.$emit('quantity', this.quantity);
     },
   },
-  computed: {},
 };
 </script>
 

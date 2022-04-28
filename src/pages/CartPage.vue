@@ -1,6 +1,5 @@
 <template>
   <v-main id="cart">
-    <!-- <pre>{{ JSON.stringify(menusCart.cart, null, 2) }}</pre> -->
     <v-container>
       <v-row>
         <v-col cols="12" md="7">
@@ -26,8 +25,8 @@
 
             <div class="order-summary">
               <div class="d-flex justify-space-between py-4 order-summary--row">
-                <p>Subtotal (1)</p>
-                <p>S/ 100.00</p>
+                <p>Subtotal ({{ this.$store.getters.getQuantityMenus }})</p>
+                <p>S/ {{ getTotalPriceMenus }}</p>
               </div>
 
               <div class="d-flex justify-space-between py-4 order-summary--row">
@@ -37,12 +36,14 @@
 
               <div class="d-flex justify-space-between py-4 order-summary--row">
                 <p><strong>TOTAL</strong></p>
-                <p><strong>S/ 100.00</strong></p>
+                <p>
+                  <strong>S/ {{ getTotalPriceMenus }}</strong>
+                </p>
               </div>
             </div>
 
             <v-btn color="cyan" class="mt-4" block
-              >TOTAL: S/ 100.00 | PAGAR</v-btn
+              >TOTAL: S/ {{ getTotalPriceMenus }} | PAGAR</v-btn
             >
           </div>
         </v-col>
@@ -52,7 +53,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapGetters } from 'vuex';
 import MenuCardCart from '@/components/MenuCardCart.vue';
 
 export default {
@@ -61,6 +62,7 @@ export default {
     MenuCardCart,
   },
   computed: {
+    ...mapGetters(['getTotalPriceMenus']),
     ...mapState(['menusCart']),
     getQuantity() {
       const quantity = this.$store.getters.getQuantityMenus;
