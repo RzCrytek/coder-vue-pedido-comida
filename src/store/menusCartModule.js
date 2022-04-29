@@ -14,10 +14,31 @@ export default {
         .toFixed(2);
       return total;
     },
+    validStockInCart(state, payload) {
+      const valid = state.cart.some((menu) =>
+        menu.id === payload.id
+          ? menu.quantity + payload.quantity > menu.stock
+          : null
+      );
+
+      return valid;
+    },
   },
   mutations: {
     getMenuProduct(state, payload) {
-      state.cart.push(payload);
+      const menuInCart = state.cart.some((menu) => menu.id === payload.id);
+
+      if (menuInCart) {
+        const newCart = state.cart.map((menu) =>
+          menu.id == payload.id
+            ? { ...menu, quantity: menu.quantity + payload.quantity }
+            : menu
+        );
+
+        return (state.cart = newCart);
+      }
+
+      state.cart = [...state.cart, payload];
     },
     getDecreaseMenu(state, payload) {
       if (payload.quantityMenuAdded > 1) {
@@ -48,6 +69,7 @@ export default {
   actions: {
     addMenu(context, payload) {
       context.commit('getMenuProduct', payload);
+      // context.commit('validStockInCart', payload);
     },
     decreaseMenu({ commit }, payload) {
       commit('getDecreaseMenu', payload);
