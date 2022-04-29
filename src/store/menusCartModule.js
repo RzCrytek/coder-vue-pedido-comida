@@ -1,6 +1,8 @@
+import { storageSet, storageGet } from './localStorage';
+
 export default {
   state: {
-    cart: [],
+    cart: storageGet('cart') || [],
     cartButtonAnimation: false,
   },
   getters: {
@@ -35,9 +37,11 @@ export default {
             : menu
         );
 
+        storageSet('cart', newCart);
         return (state.cart = newCart);
       }
 
+      storageSet('cart', [...state.cart, payload]);
       state.cart = [...state.cart, payload];
     },
     getDecreaseMenu(state, payload) {
