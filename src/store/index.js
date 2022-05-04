@@ -24,7 +24,6 @@ export default new Vuex.Store({
       const { name, lastname, roles } = payload;
       const isAdmin = 'admin'.includes(roles);
       state.user = { name, lastname, isLogin: true, isAdmin };
-      console.log('loggedUser:', payload);
     },
     logout(state) {
       state.user = {};

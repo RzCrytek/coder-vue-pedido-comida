@@ -42,7 +42,7 @@
               </div>
             </div>
 
-            <v-btn color="cyan" class="mt-4" block
+            <v-btn to="/checkout/payment" color="cyan" class="mt-4" block
               >TOTAL: S/ {{ getTotalPriceMenus }} | PAGAR</v-btn
             >
           </div>

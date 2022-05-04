@@ -82,7 +82,6 @@ export default {
   },
   watch: {
     quantity() {
-      console.log('watch:', this.quantity);
       this.$emit('quantity', this.quantity);
     },
   },

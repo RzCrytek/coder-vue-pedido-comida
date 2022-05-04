@@ -90,9 +90,7 @@ export default {
       this.quantity = value;
     },
     addMenuToCart(menu, quantity) {
-      console.log(menu, quantity);
       const newMenu = { ...menu, quantity };
-      console.log('newMenu:', newMenu);
       this.$store.dispatch('addMenu', newMenu);
 
       // menusCart.cartButtonAnimation = true;

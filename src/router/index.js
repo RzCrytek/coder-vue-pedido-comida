@@ -50,6 +50,19 @@ const routes = [
       layout: 'Layout',
     },
   },
+  {
+    path: '/checkout/payment',
+    name: 'checkout_payment',
+    component: () => import('../pages/checkout/Payment.vue'),
+    meta: {
+      layout: 'Layout',
+    },
+  },
+  {
+    path: '/checkout/order/:id',
+    name: 'checkout_order',
+    component: () => import('../pages/checkout/OrderPage.vue'),
+  },
 
   {
     path: '/dashboard',

@@ -1,6 +1,6 @@
 <template>
   <v-card class="mb-4" outlined>
-    <div class="d-flex py-4 px-4">
+    <div class="d-flex py-4 px-4" :class="{ 'align-center': readOnly }">
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
         :src="menu.image"
@@ -20,6 +20,8 @@
               readonly
               size="14"
             ></v-rating>
+
+            <p v-if="readOnly">Cantidad: {{ menu.quantity }}</p>
           </div>
 
           <div class="info-price">
@@ -27,7 +29,7 @@
           </div>
         </div>
 
-        <v-card-actions class="justify-space-between px-0">
+        <v-card-actions class="justify-space-between px-0" v-if="!readOnly">
           <Counter
             :stock="menu.stock"
             :menuId="menu.id"
@@ -52,6 +54,7 @@ export default {
   name: 'MenuCardCart',
   props: {
     menu: Object,
+    readOnly: Boolean,
   },
   components: {
     Counter,

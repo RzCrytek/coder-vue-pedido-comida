@@ -1,4 +1,4 @@
-import { storageSet, storageGet } from './localStorage';
+import { storageSet, storageGet, storageRemove } from './localStorage';
 
 export default {
   state: {
@@ -69,6 +69,10 @@ export default {
     getRemoveMenu(state, payload) {
       state.cart = payload;
     },
+    getClearCart(state) {
+      storageRemove('cart');
+      state.cart = [];
+    },
   },
   actions: {
     addMenu(context, payload) {
@@ -84,6 +88,9 @@ export default {
     removeMenu({ commit, state }, id) {
       const newCart = state.cart.filter((menu) => menu.id !== id);
       commit('getRemoveMenu', newCart);
+    },
+    clearCart({ commit }) {
+      commit('getClearCart');
     },
   },
 };
